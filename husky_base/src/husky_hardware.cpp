@@ -246,6 +246,11 @@ void HuskyHardware::readStatusFromHardware()
   {
     RCLCPP_ERROR(rclcpp::get_logger(HW_NAME), "Could not get system_status");
   }
+  status_msg_.header.stamp = rclcpp::Clock().now();
+  status_msg_.header.frame_id = "base_link";
+  status_msg_.ros_control_loop_freq = control_loop_frequency_;
+  
+  software_status_task_->updateControlFrequency(control_loop_frequency_);
   diagnostic_updater_->force_update();
   status_node_->publish_status(status_msg_);
 }
@@ -414,8 +419,9 @@ hardware_interface::CallbackReturn HuskyHardware::on_deactivate(const rclcpp_lif
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::return_type HuskyHardware::read(const rclcpp::Time& /*time*/, const rclcpp::Duration& /*period*/)
+hardware_interface::return_type HuskyHardware::read(const rclcpp::Time& /*time*/, const rclcpp::Duration& period)
 {
+  control_loop_frequency_ = 1.0 / period.seconds();
   RCLCPP_DEBUG(rclcpp::get_logger(HW_NAME), "Reading from hardware");
 
   updateJointsFromHardware();

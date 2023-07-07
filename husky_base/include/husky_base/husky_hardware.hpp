@@ -69,6 +69,7 @@ private:
   std::vector<double> hw_states_position_, hw_states_position_offset_, hw_states_velocity_;
 
   uint8_t left_cmd_joint_index_, right_cmd_joint_index_;
+  double control_loop_frequency_;
 
   std::shared_ptr<husky_status::HuskyStatus> status_node_;
   husky_msgs::msg::HuskyStatus status_msg_;
