@@ -1,6 +1,10 @@
 twist_mux:
   ros__parameters:
     topics:
+      remote_joypad:
+        topic   : taranis/cmd_vel
+        timeout : 0.5
+        priority: 20
       joy:
         topic   : joy_teleop/cmd_vel
         timeout : 0.5
