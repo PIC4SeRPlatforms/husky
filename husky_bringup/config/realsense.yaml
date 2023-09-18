@@ -1,0 +1,32 @@
+/**:
+  realsense2_camera_node:
+    ros__parameters:
+      enable_sync: true
+      enable_color: true
+      rgb_camera.profile: 640,480,30
+      enable_depth: true
+      depth_module.profile: 640,480,30
+      align_depth.enable: true
+      pointcloud.enable: true
+      pointcloud.allow_no_texture_points: true
+      pointcloud.stream_filter: 2
+      allow_no_texture_points: true
+      rgb_camera.power_line_frequency: 0
+
+camera_front:
+  realsense2_camera_node:
+    ros__parameters:
+      camera_name: camera_front
+      serial_no: _031422250398
+
+camera_left:
+  realsense2_camera_node:
+    ros__parameters:
+      camera_name: camera_left
+      serial_no: _117322074935
+
+camera_right:
+  realsense2_camera_node:
+    ros__parameters:
+      camera_name: camera_right
+      serial_no: _117322071656
