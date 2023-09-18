@@ -1,6 +1,11 @@
 husky
 =====
 
+## Build Status
+
+[![Formatting (pre-commit)](https://github.com/andreaostuni/husky/actions/workflows/format.yaml/badge.svg?branch=humble-devel)](https://github.com/andreaostuni/husky/actions/workflows/format.yaml?query=branch%3Ahumble-devel)
+[![Build and Test](https://github.com/andreaostuni/husky/actions/workflows/build_and_test.yml/badge.svg?branch=humble-devel)](https://github.com/andreaostuni/husky/actions/workflows/build_and_test.yml?query=branch%3Ahumble-devel)
+
 :warning: **Upgrading to ROS2 may not have the same functionally as ROS**: Contact support at support@clearpathrobotics.com.
 
 Common ROS packages for the Clearpath Husky, useable for both simulation and

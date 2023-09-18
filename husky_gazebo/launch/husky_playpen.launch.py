@@ -1,3 +1,17 @@
+# Copyright 2023 Andrea Ostuni - PIC4SeR
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -8,20 +22,16 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     world_file = PathJoinSubstitution(
-        [FindPackageShare("husky_gazebo"),
-         "worlds",
-         "clearpath_playpen.world"],
+        [FindPackageShare("husky_gazebo"), "worlds", "clearpath_playpen.world"],
     )
 
     gazebo_launch = PathJoinSubstitution(
-        [FindPackageShare("husky_gazebo"),
-         "launch",
-         "gazebo.launch.py"],
+        [FindPackageShare("husky_gazebo"), "launch", "gazebo.launch.py"],
     )
 
     gazebo_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([gazebo_launch]),
-        launch_arguments={'world_path': world_file}.items(),
+        launch_arguments={"world_path": world_file}.items(),
     )
 
     ld = LaunchDescription()

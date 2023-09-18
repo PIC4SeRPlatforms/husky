@@ -1,3 +1,17 @@
+// Copyright 2023 Andrea Ostuni - PIC4SeR
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 /**
  *      _____
  *     /  _  \
@@ -44,22 +58,24 @@
  *
  */
 
+#include "husky_base/horizon_legacy/Transport.h"
+
 #include <string.h>
 #include <unistd.h>
-#include <cstdlib>
-#include <iostream>
-#include <vector>
-#include <string>
-#include <sstream>
-#include <ctime>
 
-#include "husky_base/horizon_legacy/Transport.h"
-#include "husky_base/horizon_legacy/Number.h"
-#include "husky_base/horizon_legacy/Message.h"
-#include "husky_base/horizon_legacy/Message_request.h"
-#include "husky_base/horizon_legacy/Message_cmd.h"
-#include "husky_base/horizon_legacy/serial.h"
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
 #include "husky_base/horizon_legacy/Logger.h"
+#include "husky_base/horizon_legacy/Message.h"
+#include "husky_base/horizon_legacy/Message_cmd.h"
+#include "husky_base/horizon_legacy/Message_request.h"
+#include "husky_base/horizon_legacy/Number.h"
+#include "husky_base/horizon_legacy/serial.h"
 
 using namespace std;
 

@@ -1,3 +1,17 @@
+// Copyright 2023 Andrea Ostuni - PIC4SeR
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 #ifndef HUSKY_BASE__HUSKY_HARDWARE_HPP_
 #define HUSKY_BASE__HUSKY_HARDWARE_HPP_
 
@@ -11,13 +25,12 @@
 #include "hardware_interface/system_interface.hpp"
 #include "hardware_interface/types/hardware_interface_return_values.hpp"
 #include "hardware_interface/visibility_control.h"
+#include "husky_base/horizon_legacy_wrapper.h"
+#include "husky_base/husky_diagnostics.hpp"
+#include "husky_base/husky_status.hpp"
 #include "husky_msgs/msg/husky_status.hpp"
 #include "rclcpp/macros.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include "husky_base/husky_diagnostics.hpp"
-
-#include "husky_base/horizon_legacy_wrapper.h"
-#include "husky_base/husky_status.hpp"
 
 using namespace std::chrono_literals;
 

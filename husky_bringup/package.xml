@@ -10,7 +10,7 @@
   <url type="website">http://ros.org/wiki/husky_bringup</url>
   <url type="bugtracker">https://github.com/husky/husky_robot/issues</url>
   <url type="repository">https://github.com/husky/husky_robot</url>
-  
+
   <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
   <author email="paul@bovbel.com">Paul Bovbel</author>
   <author email="dash@clearpathrobotics.com">Devon Ash</author>

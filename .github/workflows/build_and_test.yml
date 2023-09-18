@@ -1,9 +1,10 @@
-name: husky_ci
+name: Build and Test
 
-on: 
+on:
+  workflow_dispatch:
   push:
     branches: [humble-devel]
-  pull_request: 
+  pull_request:
     branches: [humble-devel]
   schedule:
     - cron: '0 4 * * *' # every day at 4 AM (UTC)
@@ -19,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: 'ros-industrial/industrial_ci@master'
-        env: 
+        env:
           ROS_DISTRO: ${{matrix.distro}}
           ROS_REPO: ${{matrix.repo}}
   husky_humble_main_ci:
@@ -27,12 +28,11 @@ jobs:
     strategy:
       matrix:
         distro: [humble]
-        repo: [main]    
+        repo: [main]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: 'ros-industrial/industrial_ci@master'
-        env: 
+        env:
           ROS_DISTRO: ${{matrix.distro}}
           ROS_REPO: ${{matrix.repo}}
-          

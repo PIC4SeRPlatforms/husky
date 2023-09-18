@@ -1,3 +1,17 @@
+# Copyright 2023 Andrea Ostuni - PIC4SeR
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -13,8 +27,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("husky_description"),
-                 "urdf", "husky.urdf.xacro"]
+                [FindPackageShare("husky_description"), "urdf", "husky.urdf.xacro"]
             ),
             " ",
             "name:=husky",
@@ -26,9 +39,7 @@ def generate_launch_description():
     robot_description = {"robot_description": robot_description_content}
 
     config_husky_velocity_controller = PathJoinSubstitution(
-        [FindPackageShare("husky_control"),
-         "config",
-         "control.yaml"],
+        [FindPackageShare("husky_control"), "config", "control.yaml"],
     )
 
     node_robot_state_publisher = Node(
@@ -64,24 +75,40 @@ def generate_launch_description():
 
     # Launch husky_control/control.launch.py which is just robot_localization.
     launch_husky_control = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare("husky_control"), 'launch', 'control.launch.py'])))
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [FindPackageShare("husky_control"), "launch", "control.launch.py"]
+            )
+        )
+    )
 
     # Launch husky_control/teleop_base.launch.py which is various ways to tele-op
     # the robot but does not include the joystick. Also, has a twist mux.
     launch_husky_teleop_base = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare("husky_control"), 'launch', 'teleop_base.launch.py'])))
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [FindPackageShare("husky_control"), "launch", "teleop_base.launch.py"]
+            )
+        )
+    )
 
     # Launch husky_control/teleop_joy.launch.py which is tele-operation using a physical joystick.
     launch_husky_teleop_joy = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare("husky_control"), 'launch', 'teleop_joy.launch.py'])))
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [FindPackageShare("husky_control"), "launch", "teleop_joy.launch.py"]
+            )
+        )
+    )
 
     # Launch husky_bringup/accessories.launch.py which is the sensors commonly used on the Husky.
     launch_husky_accessories = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare("husky_bringup"), 'launch', 'accessories.launch.py'])))
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [FindPackageShare("husky_bringup"), "launch", "accessories.launch.py"]
+            )
+        )
+    )
 
     ld = LaunchDescription()
     ld.add_action(node_robot_state_publisher)
