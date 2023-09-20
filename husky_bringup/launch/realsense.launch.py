@@ -16,9 +16,16 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-    config = PathJoinSubstitution([ThisLaunchFileDir(), "..", "config", "realsense.yaml"])
+    config = PathJoinSubstitution(
+        [ThisLaunchFileDir(), "..", "config", "realsense.yaml"]
+    )
 
-    camera_names = ["camera_front", "camera_left", "camera_right"]
+    camera_names = [
+        "camera_front",
+        "camera_top_front",
+        # "camera_left",
+        # "camera_right"
+    ]
 
     ld = LaunchDescription()
 

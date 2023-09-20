@@ -8,7 +8,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     config_file = PathJoinSubstitution(
-        [ThisLaunchFileDir(), "..", "config", "microstrain_gx5.yaml"]
+        [FindPackageShare('husky_bringup'), "config", "microstrain_gx5.yaml"]
     )
 
     return LaunchDescription(
