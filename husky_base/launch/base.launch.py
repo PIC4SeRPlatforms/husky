@@ -13,7 +13,8 @@
 # limitations under the License.
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, TimerAction, RegisterEventHandler
+from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -40,6 +41,10 @@ def generate_launch_description():
 
     config_husky_velocity_controller = PathJoinSubstitution(
         [FindPackageShare("husky_control"), "config", "control.yaml"],
+    )
+
+    config_husky_diagnostics = PathJoinSubstitution(
+        [FindPackageShare("husky_base"), "config", "diagnostics.yaml"]
     )
 
     node_robot_state_publisher = Node(
@@ -73,6 +78,13 @@ def generate_launch_description():
         output="screen",
     )
 
+    diagnostics_node = Node(
+        package="diagnostic_aggregator",
+        executable="aggregator_node",
+        name="diagnostic_aggregator",
+        parameters=[config_husky_diagnostics],
+    )
+
     # Launch husky_control/control.launch.py which is just robot_localization.
     launch_husky_control = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -101,7 +113,27 @@ def generate_launch_description():
         )
     )
 
+    launch_husky_teleop_remote_joypad = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [FindPackageShare("remote_joypad"), "launch", "teleop.launch.py"]
+            )
+        )
+    )
+
     # Launch husky_bringup/accessories.launch.py which is the sensors commonly used on the Husky.
+    launch_husky_cpr_accessories = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [
+                    FindPackageShare("husky_bringup"),
+                    "launch",
+                    "cpr_accessories.launch.py",
+                ]
+            )
+        )
+    )
+
     launch_husky_accessories = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution(
@@ -110,14 +142,27 @@ def generate_launch_description():
         )
     )
 
+    delay_accessories = RegisterEventHandler(
+        OnProcessExit(
+            target_action=spawn_husky_velocity_controller,
+            on_exit=[
+                TimerAction(
+                    period=10.0,
+                    actions=[launch_husky_cpr_accessories, launch_husky_accessories],
+                )
+            ],
+        )
+    )
     ld = LaunchDescription()
     ld.add_action(node_robot_state_publisher)
     ld.add_action(node_controller_manager)
     ld.add_action(spawn_controller)
     ld.add_action(spawn_husky_velocity_controller)
+    ld.add_action(diagnostics_node)
     ld.add_action(launch_husky_control)
     ld.add_action(launch_husky_teleop_base)
     ld.add_action(launch_husky_teleop_joy)
-    ld.add_action(launch_husky_accessories)
+    ld.add_action(launch_husky_teleop_remote_joypad)
+    ld.add_action(delay_accessories)
 
     return ld

@@ -4,14 +4,27 @@ diagnostic_aggregator:
     husky:
       type: diagnostic_aggregator/GenericAnalyzer
       path: Husky
-      find_and_remove_prefix: ['husky_hardware: ']
+      find_and_remove_prefix: ['husky_status_node: ']
       expected: [
-        'husky_hardware: power_status',
-        'husky_hardware: system_status',
-        'husky_hardware: safety_status',
-        'husky_hardware: software_status']
+        'husky_status_node: power_status',
+        'husky_status_node: system_status',
+        'husky_status_node: safety_status',
+        'husky_status_node: software_status']
       timeout: 5.0
     twist_mux:
       type: diagnostic_aggregator/GenericAnalyzer
       path: TwistMux
-      find_and_remove_prefix: ['twist_mux:']
+      find_and_remove_prefix: ['twist_mux: ']
+    ekf_node:
+      type: diagnostic_aggregator/GenericAnalyzer
+      path: EKF
+      find_and_remove_prefix: ['ekf_node: ']
+    velodyne_transform_node:
+      type: diagnostic_aggregator/GenericAnalyzer
+      path: Velodyne
+      find_and_remove_prefix: ['velodyne_transform_node: ']
+    velodyne_driver_node:
+      type: diagnostic_aggregator/GenericAnalyzer
+      path: Velodyne
+      find_and_remove_prefix: ['velodyne_driver_node: ']
+
