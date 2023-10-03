@@ -19,7 +19,7 @@ piksi:
       sbp_file: "/home/swiftnav/ros2logs/sample-drive.sbp"
 
       # ROS2 Frame Name
-      frame_name: "swiftnav-gnss"
+      frame_name: gps_ref_frame
 
       # Topic Publication Time Stamp Source
       timestamp_source_gnss: True # True: use GNSS receiver reported time (default), False: use current platfrom time
@@ -65,7 +65,7 @@ piksi:
       sbp_file: "/home/swiftnav/ros2logs/sample-drive.sbp"
 
       # ROS2 Frame Name
-      frame_name: "swiftnav-gnss"
+      frame_name: gps_att_frame
 
       # Topic Publication Time Stamp Source
       timestamp_source_gnss: True # True: use GNSS receiver reported time (default), False: use current platfrom time
