@@ -29,9 +29,13 @@ def generate_launch_description():
     node_ekf = Node(
         package="robot_localization",
         executable="ekf_node",
-        name="ekf_node",
+        name="ekf_node_odom",
         output="screen",
         parameters=[config_husky_ekf],
+        remappings=[
+            ("/set_pose", "/set_pose/local"),
+            ("odometry/filtered", "odometry/filtered/local")
+        ]
     )
     ld.add_action(node_ekf)
 
