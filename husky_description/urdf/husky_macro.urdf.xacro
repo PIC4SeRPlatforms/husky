@@ -100,6 +100,13 @@
       <child link="${prefix}imu_link" />
     </joint>
 
+    <link name="${prefix}imu_sensor" />
+    <joint name="${prefix}sensor_joint" type="fixed" >
+      <origin xyz="0 0 0" rpy="0 3.14159265 -1.57079633" />
+      <parent link="${prefix}imu_link" />
+      <child link="${prefix}imu_sensor" />
+    </joint>
+
     <!-- GPS Link-->
     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
     <link name="${prefix}gps_link"/>

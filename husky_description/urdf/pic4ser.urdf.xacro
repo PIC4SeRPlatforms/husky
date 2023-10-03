@@ -4,12 +4,16 @@
     <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
     <xacro:include filename="$(find realsense2_description)/urdf/_d455.urdf.xacro" />
 
-    <xacro:sensor_d435i parent="base_link" name="camera_left" >
+    <!-- <xacro:sensor_d435i parent="base_link" name="camera_left" >
         <origin xyz="0.06 0.28 0.625" rpy="0 0 0.26" />
     </xacro:sensor_d435i>
 
     <xacro:sensor_d435i parent="base_link" name="camera_right" >
         <origin xyz="0.06 -0.28 0.625" rpy="0 0 -0.26" />
+    </xacro:sensor_d435i> -->
+
+    <xacro:sensor_d435i parent="base_link" name="camera_top_front" >
+        <origin xyz="0.045 0 0.578" rpy="0 0 0" />
     </xacro:sensor_d435i>
 
     <xacro:sensor_d455 parent="top_plate_front_link" name="camera_front" >
