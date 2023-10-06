@@ -15,10 +15,14 @@ diagnostic_aggregator:
       type: diagnostic_aggregator/GenericAnalyzer
       path: TwistMux
       find_and_remove_prefix: ['twist_mux: ']
-    ekf_node:
+    ekf_node_odom:
       type: diagnostic_aggregator/GenericAnalyzer
       path: EKF
-      find_and_remove_prefix: ['ekf_node: ']
+      find_and_remove_prefix: ['ekf_node_odom: ']
+    ekf_node_map:
+      type: diagnostic_aggregator/GenericAnalyzer
+      path: EKF
+      find_and_remove_prefix: ['ekf_node_map: ']
     velodyne_transform_node:
       type: diagnostic_aggregator/GenericAnalyzer
       path: Velodyne
